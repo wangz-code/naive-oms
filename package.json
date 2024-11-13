@@ -1,6 +1,6 @@
 {
   "name": "naive-oms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "常用二次封装的 naive 组件",
   "main": "./src/index.ts",
   "homepage": "https://github.com/wangz-code/naive-oms",
