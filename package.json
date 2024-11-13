@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/wangz-code/naive-oms"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "homepage": "https://github.com/wangz-code/naive-oms",
   "bugs": "https://github.com/wangz-code/naive-oms/issues",
   "author": "wangz-code",
