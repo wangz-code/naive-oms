@@ -1,0 +1,31 @@
+{
+  "name": "@oms/naive",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wangz-code/naive-oms",
+  "bugs": "https://github.com/wangz-code/naive-oms/issues",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "dependencies": {
+    "@vicons/ionicons5": "^0.12.0",
+    "@vicons/tabler": "^0.12.0",
+    "bignumber.js": "^9.1.2",
+    "crypto-js": "^4.2.0",
+    "lodash-es": "^4.17.21",
+    "naive-ui": "^2.40.1",
+    "pinia": "^2.2.6",
+    "pinia-plugin-persistedstate": "^4.1.3",
+    "vue": "^3.5.12",
+    "vue-draggable-plus": "^0.5.6",
+    "vue-i18n": "^10.0.4",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.12"
+  }
+}
