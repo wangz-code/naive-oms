@@ -1,6 +1,6 @@
 {
   "name": "@oms/naive",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "常用二次封装的 naive 组件",
   "keywords": [
     "vue3",
