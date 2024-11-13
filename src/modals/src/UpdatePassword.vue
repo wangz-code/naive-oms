@@ -23,7 +23,7 @@
   </n-card>
 </template>
 <script setup lang="ts">
-import { $t, useDialogPro, useMessagePro, type DelRes, type OtherModalProps } from '@oms/naive';
+import { $t, useDialogPro, useMessagePro, type DelRes, type OtherModalProps } from '../../index';
 import { type FormInst, type FormItemInst, type FormItemRule, type FormRules } from 'naive-ui';
 import { ref, toRaw } from 'vue';
 

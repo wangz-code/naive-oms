@@ -8,10 +8,7 @@
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 		"useDefineForClassFields": true,
 		"moduleResolution": "bundler",
-		"declaration": false,
-		"paths": {
-			"@oms/naive": ["./src/"]
-		}
+		"declaration": false
 	},
 	"exclude": ["node_modules"]
 }

@@ -9,7 +9,7 @@
 	<n-data-table remote size="small" :columns="columns" :data="tableSorce" :pagination="pagination" :loading="isLoading" :row-key="(rows: any) => rows[rowKey]" :scroll-x="scrollX" :max-height="maxHeight || 500" :summary="summary" :checked-row-keys="cKeys" @update:sorter="handleSorterChange" @update:checked-row-keys="handleCheck" />
 </template>
 <script setup lang="tsx" generic="T extends object, A extends Function, Q extends object">
-import { useDialogPro, usePagination, useTableChecked, type TableConfig } from "@oms/naive";
+import { useDialogPro, usePagination, useTableChecked, type TableConfig } from "../../index";
 import { cloneDeep, isArray, isFunction } from "lodash-es";
 import { NDataTable, NFlex, type DataTableColumns, type DataTableCreateSummary, type DataTableRowKey, type DataTableSortState } from "naive-ui";
 import type { CompareFn } from "naive-ui/es/data-table/src/interface";

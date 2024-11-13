@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-import { $t, useDialogPro, useMessagePro, useSkeleton, type AuthData, type OtherModalProps, type Uri } from '@oms/naive';
+import { $t, useDialogPro, useMessagePro, useSkeleton, type AuthData, type OtherModalProps, type Uri } from '../../index';
 import { debounce } from 'lodash-es';
 import AuthItem from './auth-item.vue';
 import { onMounted, reactive, ref } from 'vue';

@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import { $t, type AuthData, type Uri } from '@oms/naive';
+import { $t, type AuthData, type Uri } from '../../index';
 
 const emit = defineEmits(['selectAll', 'selectNone']);
 defineProps<{
