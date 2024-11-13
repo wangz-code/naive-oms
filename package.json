@@ -1,25 +1,13 @@
 {
-  "name": "@oms/naive",
-  "version": "0.0.0",
+  "name": "naive-oms",
+  "version": "1.0.0",
   "description": "常用二次封装的 naive 组件",
-  "keywords": [
-    "vue3",
-    "naive"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wangz-code/naive-oms"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
+  "main": "./src/index.ts",
   "homepage": "https://github.com/wangz-code/naive-oms",
   "bugs": "https://github.com/wangz-code/naive-oms/issues",
-  "author": "wangz-code",
-  "license": "MIT",
-  "type": "module",
-  "main": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "@vicons/ionicons5": "^0.12.0",
     "@vicons/tabler": "^0.12.0",
@@ -36,5 +24,10 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12"
-  }
+  },
+  "keywords": [
+    "naive"
+  ],
+  "author": "wangqz",
+  "license": "MIT"
 }
