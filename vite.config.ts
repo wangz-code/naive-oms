@@ -10,6 +10,7 @@ export default defineConfig({
 		drop: [ "debugger"], // "console",
 	},
 	build: {
+		outDir:"lib",
 		lib: {
 			entry: "./src/index.ts",
 			formats: ["es"],
