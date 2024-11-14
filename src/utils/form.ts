@@ -1,14 +1,14 @@
 /*
  * @Author: wangqz
  * @Date: 2024-09-09
- * @LastEditTime: 2024-10-22
+ * @LastEditTime: 2024-11-14
  * @Description: 表单相关
  */
 
-import type { FormRules } from 'naive-ui';
-import { $t } from '../locale';
+import useLocale from "#/_mixins/use-locale";
+import type { FormRules } from "naive-ui";
 // 效验时机
-export const trigger = ['input', 'change',"blur"];
+export const trigger = ["input", "change", "blur"];
 
 /**
  *
@@ -17,11 +17,12 @@ export const trigger = ['input', 'change',"blur"];
  * @returns FormRules
  */
 export const stringRuleRequired = (fileds: string[], options?: FormRules): FormRules => {
-  const res: FormRules = {};
-  for (const key of fileds) {
-    res[key] = { required: true, message: $t('naive.common.required'), trigger, ...options };
-  }
-  return res;
+	const res: FormRules = {};
+	const { localeRef } = useLocale("global");
+	for (const key of fileds) {
+		res[key] = { required: true, message: localeRef.value.required, trigger, ...options };
+	}
+	return res;
 };
 
 /**
@@ -29,14 +30,14 @@ export const stringRuleRequired = (fileds: string[], options?: FormRules): FormR
  * @returns  RegExp
  */
 export const Pattern = {
-  phone: new RegExp(/^[1][3,4,5,6.7,8,9][0-9]{9}$/),
+	phone: new RegExp(/^[1][3,4,5,6.7,8,9][0-9]{9}$/),
 };
 
 /**
  * 表单验证错误类型
  */
 export interface ValidateError {
-  message?: string;
-  fieldValue?: any;
-  field?: string;
+	message?: string;
+	fieldValue?: any;
+	field?: string;
 }

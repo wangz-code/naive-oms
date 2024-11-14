@@ -35,14 +35,3 @@ const updateCollapsed = () => {
 	emit("update:collapsed", !collapsed);
 };
 </script>
-
-<style scoped>
-.cols-box {
-	margin-top: 10px;
-	max-height: 50vh;
-	overflow: auto;
-}
-.pointer {
-	cursor: pointer;
-}
-</style>

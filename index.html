@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<div id="app">
+			<div>wakakka</div>
+			<div>{{count}}</div>
+			{{i18n.t('naive.table.total')}}
+			<button @click="setOmsLocal('zh-CN')">zh-CN</button>
+			<button @click="()=>setOmsLocal('en-US')">en-US</button>
+		</div>
+		<script src="./vue.global.js"></script>
+		<script type="module">
+			import { uniArr, OmsIbtn, setOmsLocal } from "./dist/index.js";
+			const app = Vue.createApp({
+				data() {
+					const i18n = setOmsLocal("zh-CN");
+					console.log(" $t log==>", i18n);
+					return {
+						count: 0,
+						i18n,
+						setOmsLocal,
+					};
+				},
+			});
+			app.mount("#app");
+		</script>
+	</body>
+</html>

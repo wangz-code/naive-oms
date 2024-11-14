@@ -1,27 +1,29 @@
 <template>
 	<slot name="form" v-bind="{ collapsed, reload, qParams, TableCtrl }"> </slot>
-	<n-flex class="m-t-sm m-b-sm" justify="space-between">
+	<br />
+	<n-flex justify="space-between">
 		<span>
 			<slot name="bar-left"></slot>
 		</span>
 		<component v-if="buttonGrop == 'default'" :is="TableCtrl()"></component>
 	</n-flex>
+	<br />
 	<n-data-table remote size="small" :columns="columns" :data="tableSorce" :pagination="pagination" :loading="isLoading" :row-key="(rows: any) => rows[rowKey]" :scroll-x="scrollX" :max-height="maxHeight || 500" :summary="summary" :checked-row-keys="cKeys" @update:sorter="handleSorterChange" @update:checked-row-keys="handleCheck" />
 </template>
-<script setup lang="tsx" generic="T extends object, A extends Function, Q extends object">
-import { useDialogPro, usePagination, useTableChecked, type TableConfig } from "../../index";
+<script setup lang="ts">
+import { useDialogPro, usePagination, useTableChecked, type TableConfig } from "#/index";
 import { cloneDeep, isArray, isFunction } from "lodash-es";
 import { NDataTable, NFlex, type DataTableColumns, type DataTableCreateSummary, type DataTableRowKey, type DataTableSortState } from "naive-ui";
 import type { CompareFn } from "naive-ui/es/data-table/src/interface";
 import { h, onMounted, ref, toRaw, watch } from "vue";
 import TableBtnGroup from "./TableBtnGroup.vue";
-const columns = defineModel<DataTableColumns<T>>("columns", { default: [] });
-
+type T = { [k: string]: any };
+type A = Function;
 type TablePorps = {
 	/** 请求 */
 	api: A;
 	/** 配置参数*/
-	config: TableConfig<Q>;
+	config: TableConfig<T>;
 	/** 合计行 */
 	summary?: DataTableCreateSummary<T>;
 	/** 立即查询 default: true */
@@ -31,6 +33,7 @@ type TablePorps = {
 	/** 查询重置按钮组位置 需要手动添加 <component justify="end" :is="TableCtrl()"></component> */
 	buttonGrop?: "top" | "default";
 };
+const columns = defineModel<DataTableColumns<T>>("columns", { default: [] });
 const { api, config, query = true, buttonGrop = "default" } = defineProps<TablePorps>();
 const rowKey = config.rowKey;
 const collapsed = ref(false);
@@ -117,5 +120,5 @@ onMounted(() => {
 	const { watchFilter } = config;
 	watchFilter && watch(() => qParams.value.filter, reload, { deep: 1 });
 });
-defineExpose({ cKeys, cRows, setKeys, setRows, cleanCheck, reload, getSource, refresh: onQuery, qParams });
+defineExpose({ cKeys, cRows, setKeys, setRows, cleanCheck, reload, getSource, refresh: onQuery });
 </script>
