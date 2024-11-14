@@ -60,8 +60,7 @@ const fixedToggle = (column: DataTableColumn) => {
 	}
 	refresh();
 };
-
-refresh();
+refresh()
 
 const style = {
 	colsBox: {

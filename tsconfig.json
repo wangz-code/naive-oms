@@ -1,17 +1,17 @@
 {
-	"$schema": "https://json.schemastore.org/tsconfig",
-	"include": ["src", "src/**/*.ts"],
-	"compilerOptions": {
-		"module": "es2015",
-		"jsx": "preserve",
-		"jsxImportSource": "vue",
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-		"useDefineForClassFields": true,
-		"moduleResolution": "bundler",
-		"declaration": false,
-		"paths": {
-			"#/*": ["./src/*"]
-		}
-	},
-	"exclude": ["node_modules"]
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "include": ["src", "src/**/*.ts"],
+  "compilerOptions": {
+    "module": "es2015",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "useDefineForClassFields": true,
+    "moduleResolution": "bundler",
+    "declaration": false,
+    "paths": {
+      "#/*": ["./src/*"],
+    }
+  },
+  "exclude": ["node_modules"]
 }
