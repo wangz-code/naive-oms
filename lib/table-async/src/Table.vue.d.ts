@@ -16,11 +16,11 @@ type TablePorps = {
     /** 表格高度 */
     maxHeight?: string | number;
     /** 查询重置按钮组位置 需要手动添加 <component justify="end" :is="TableCtrl()"></component> */
-    buttonGrop?: "top" | "default";
+    buttonGrop?: 'top' | 'default';
 };
 declare let __VLS_typeProps: TablePorps;
 type __VLS_PublicProps = {
-    "columns"?: DataTableColumns<T>;
+    'columns'?: DataTableColumns<T>;
 } & typeof __VLS_typeProps;
 declare function __VLS_template(): {
     slots: {
