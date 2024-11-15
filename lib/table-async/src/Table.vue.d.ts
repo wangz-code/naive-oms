@@ -1,61 +1,54 @@
-import { TableConfig } from '../../index';
 import { DataTableColumns, DataTableCreateSummary, DataTableRowKey } from 'naive-ui';
-type T = {
-    [k: string]: any;
-};
-type A = Function;
-type TablePorps = {
-    /** 请求 */
-    api: A;
-    /** 配置参数*/
-    config: TableConfig<T>;
-    /** 合计行 */
-    summary?: DataTableCreateSummary<T>;
-    /** 立即查询 default: true */
-    query?: boolean;
-    /** 表格高度 */
-    maxHeight?: string | number;
-    /** 查询重置按钮组位置 需要手动添加 <component justify="end" :is="TableCtrl()"></component> */
-    buttonGrop?: 'top' | 'default';
-};
-declare let __VLS_typeProps: TablePorps;
-type __VLS_PublicProps = {
-    'columns'?: DataTableColumns<T>;
-} & typeof __VLS_typeProps;
-declare function __VLS_template(): {
+import { TableConfig } from '../index';
+declare const _default: <T extends object, A extends Function, Q extends object>(__VLS_props: NonNullable<Awaited<typeof __VLS_setup>>["props"], __VLS_ctx?: __VLS_PrettifyLocal<Pick<NonNullable<Awaited<typeof __VLS_setup>>, "attrs" | "emit" | "slots">>, __VLS_expose?: NonNullable<Awaited<typeof __VLS_setup>>["expose"], __VLS_setup?: Promise<{
+    props: __VLS_PrettifyLocal<Pick<Partial<{}> & Omit<{
+        readonly "onUpdate:columns"?: (columns: DataTableColumns<T>) => any;
+    } & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, never>, "onUpdate:columns"> & ({
+        columns?: DataTableColumns<T>;
+    } & {
+        /** 请求 */
+        api: A;
+        /** 配置参数*/
+        config: TableConfig<Q>;
+        /** 合计行 */
+        summary?: DataTableCreateSummary<T>;
+        /** 立即查询 default: true */
+        query?: boolean;
+        /** 表格高度 */
+        maxHeight?: string | number;
+    })> & import('vue').PublicProps;
+    expose(exposed: import('vue').ShallowUnwrapRef<{
+        cKeys: import('vue').Ref<DataTableRowKey[], DataTableRowKey[]>;
+        cRows: import('vue').Ref<import('@vue/reactivity').UnwrapRefSimple<T>[], import('@vue/reactivity').UnwrapRefSimple<T>[] | T[]>;
+        setKeys: (keys: DataTableRowKey[]) => void;
+        setRows: (rows: T[]) => void;
+        cleanCheck: () => void;
+        reload: () => void;
+        getSource: () => import('@vue/reactivity').UnwrapRefSimple<T>[];
+        refresh: () => void;
+        getParams: () => any;
+    }>): void;
+    attrs: any;
     slots: {
         form?(_: {
             collapsed: boolean;
             reload: () => void;
-            qParams: T;
+            qParams: import('@vue/reactivity').DistributeRef<[Q] extends [import('vue').Ref<any, any>] ? import('@vue/shared').IfAny<Q, import('vue').Ref<Q, Q>, Q> : import('vue').Ref<import('vue').UnwrapRef<Q>, Q | import('vue').UnwrapRef<Q>>>;
             TableCtrl: () => import('vue').VNode<import('vue').RendererNode, import('vue').RendererElement, {
                 [key: string]: any;
             }>;
         }): any;
         "bar-left"?(_: {}): any;
     };
-    refs: {};
-    attrs: Partial<{}>;
-};
-type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<__VLS_PublicProps, {
-    cKeys: import('vue').Ref<DataTableRowKey[], DataTableRowKey[]>;
-    cRows: import('vue').Ref<T[], T[]>;
-    setKeys: (keys: DataTableRowKey[]) => void;
-    setRows: (rows: T[]) => void;
-    cleanCheck: () => void;
-    reload: () => void;
-    getSource: () => T[];
-    refresh: () => void;
-}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
-    "update:columns": (columns: DataTableColumns<T>) => any;
-}, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
-    "onUpdate:columns"?: (columns: DataTableColumns<T>) => any;
-}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
-declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
-export default _default;
-type __VLS_WithTemplateSlots<T, S> = T & {
-    new (): {
-        $slots: S;
+    emit: {
+        'update:columns': [columns: DataTableColumns<T>];
     };
+}>) => import('vue').VNode<import('vue').RendererNode, import('vue').RendererElement, {
+    [key: string]: any;
+}> & {
+    __ctx?: Awaited<typeof __VLS_setup>;
 };
+export default _default;
+type __VLS_PrettifyLocal<T> = {
+    [K in keyof T]: T[K];
+} & {};

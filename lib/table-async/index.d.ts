@@ -1,11 +1,10 @@
 import { DataTableRowKey } from 'naive-ui';
-import { default as OmsTableAsync } from './src/Table.vue';
-export { OmsTableAsync };
-export type TableConfig<Q = {
+export { default as OmsTableAsync } from './src/Table.vue';
+export type TableConfig<T = {
     [k: string]: any;
 }> = {
     /** 请求参数处理 */
-    paramsHandler?: (p: Q) => {
+    paramsHandler?: (p: T) => {
         [k: string]: any;
     };
     /** 监听filter变化,重新查询 */
@@ -13,11 +12,15 @@ export type TableConfig<Q = {
     /** 列配置 */
     colsConfig?: boolean;
     /** 请求参数 */
-    params: Q;
+    params: T;
     /** 列id */
     rowKey: string;
+    /** 查询重置按钮组位置 如果设置top需要手动添加 <component justify="end" :is="TableCtrl()"></component> */
+    tableCtrl?: 'top' | 'default';
 };
-export type TableAsyRef<Row> = {
+export type TableAsyRef<Row, Q = {
+    [k: string]: any;
+}> = {
     cKeys: DataTableRowKey[];
     cRows: Row[];
     /** 设置table 已选中的key */
@@ -36,9 +39,11 @@ export type TableAsyRef<Row> = {
     reload: () => void;
     /** 当前页重新查询 */
     refresh: () => void;
+    /** 获取查询参数 */
+    getParams: () => Q;
 };
-export declare const useAsyncTable: <T>() => {
-    tableRef: import('vue').Ref<TableAsyRef<T>, TableAsyRef<T>>;
+export declare const useAsyncTable: <T, Q = any>() => {
+    tableRef: import('vue').Ref<TableAsyRef<T, Q>, TableAsyRef<T, Q>>;
     reload: () => void;
     getKeys: () => DataTableRowKey[];
     getRows: () => T[];
@@ -47,4 +52,5 @@ export declare const useAsyncTable: <T>() => {
     cleanCheck: () => void;
     getSource: () => T[];
     refresh: () => void;
+    getParams: () => Q;
 };

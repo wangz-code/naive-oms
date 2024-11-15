@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  NButton,
   NCard,
   NConfigProvider,
   NDialogProvider,
@@ -7,22 +8,33 @@ import {
   NNotificationProvider,
   NTabPane,
   NTabs,
+  dateEnUS,
+  dateZhCN,
   enUS,
   zhCN,
 } from 'naive-ui';
-import { ref } from 'vue';
-import { Table } from './table';
-const local = ref('zh-CN');
+import * as Modals from './modal';
+import * as Tabls from './table';
+import { computed, ref } from 'vue';
+const Comps = { ...Tabls, ...Modals };
+const lang = ref(true);
+const config = ref({
+  locale: computed(() => (lang.value ? zhCN : enUS)),
+  dateLocale: computed(() => (lang.value ? dateZhCN : dateEnUS)),
+});
 </script>
 <template>
-  <n-config-provider :local="local == 'zh-CN' ? zhCN : enUS" class="w-full h-full">
+  <n-config-provider v-bind="config" class="w-full h-full">
     <n-dialog-provider>
       <n-notification-provider>
         <n-message-provider>
-          <n-card title="示例">
+          <n-card title="示例" size="small">
+            <template #header-extra>
+              <n-button @click="lang = !lang">中文/English</n-button>
+            </template>
             <n-tabs type="line" animated>
-              <n-tab-pane name="table测试" tab="table">
-                <Table></Table>
+              <n-tab-pane v-for="(item, idx) in Comps" :name="idx" :tab="idx">
+                <component :is="item"></component>
               </n-tab-pane>
             </n-tabs>
           </n-card>

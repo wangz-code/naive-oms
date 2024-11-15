@@ -1,46 +1,14 @@
 <template>
-  <n-card title="异步table">
-    <oms-table-async ref="tableRef" :columns="createColumns(action)" :summary="createSummary" :api="getR01" :max-height="450" :config="config">
-      <template #form="{ collapsed, reload, qParams }">
+  <n-card title="只有一行查询的时候 手动配置查询按钮组位置,及自适应">
+    <oms-table-async ref="tableRef" :columns="createColumns(action)" :summary="createSummary" :api="getR01" :config="config">
+      <template #form="{ collapsed, reload, qParams, TableCtrl }">
         <n-form ref="formRef" label-placement="left" label-width="auto" :model="qParams">
-          <n-grid :x-gap="8" :y-gap="15" cols="2 s:3 m:4 l:5 xl:6" :collapsed="collapsed" :collapsed-rows="1" responsive="screen">
-            <n-form-item-gi label="模糊查询" path="fuzzy" :show-feedback="false">
+          <n-grid :x-gap="8" :y-gap="15" cols="2 s:2 m:4 l:10" :collapsed="collapsed" :collapsed-rows="1" responsive="screen">
+            <n-form-item-gi span="2 s:1 m:2 l:3" label="模糊查询" path="fuzzy" :show-feedback="false">
               <n-input v-model:value="qParams.fuzzy" clearable @keyup.enter="reload" @clear="reload" />
             </n-form-item-gi>
-            <n-grid-item>
-              <n-form-item label="姓名" path="user.name" :show-feedback="false" :rule="[{ required: true, message: '姓名必填' }]">
-                <n-input v-model:value="qParams.filter.name" placeholder="输入姓名" />
-              </n-form-item>
-            </n-grid-item>
-            <n-grid-item :span="2">
-              <n-form-item label="单据日期" :show-feedback="false" path="phone">
-                <n-date-picker v-model:value="qParams.filter.dateRange" type="daterange" clearable />
-              </n-form-item>
-            </n-grid-item>
-            <n-grid-item>
-              <n-form-item label="收款状态" :show-feedback="false" path="phone">
-                <n-select v-model:value="qParams.filter.saleValue" clearable :options="generalOptions" />
-              </n-form-item>
-            </n-grid-item>
-            <n-grid-item>
-              <n-form-item label="单据状态" :show-feedback="false" path="user.name">
-                <n-select v-model:value="qParams.filter.stateValue" placeholder="Select" :options="stateOptions" />
-              </n-form-item>
-            </n-grid-item>
-            <n-grid-item>
-              <n-form-item label="电话号码" path="phone" :show-feedback="false">
-                <n-input v-model:value="qParams.filter.phone" placeholder="电话号码" />
-              </n-form-item>
-            </n-grid-item>
-            <n-grid-item>
-              <n-form-item label="电话号码" path="phone" :show-feedback="false">
-                <n-input v-model:value="qParams.filter.phone" placeholder="电话号码" />
-              </n-form-item>
-            </n-grid-item>
-            <n-grid-item>
-              <n-form-item label="电话号码" path="phone" :show-feedback="false">
-                <n-input v-model:value="qParams.filter.phone" placeholder="电话号码" />
-              </n-form-item>
+            <n-grid-item span="2 s:1 m:2 l:7">
+              <component justify="end" :is="TableCtrl()"></component>
             </n-grid-item>
           </n-grid>
         </n-form>
@@ -66,27 +34,11 @@
 <script lang="ts" setup>
 import { ArrowUndoOutline, CloseOutline, Trash } from '@vicons/ionicons5';
 import { Checks, CirclePlus, Send } from '@vicons/tabler';
-import {
-  NButton,
-  NCard,
-  NDropdown,
-  NForm,
-  NFormItem,
-  NGridItem,
-  NFormItemGi,
-  NGrid,
-  NInput,
-  NSelect,
-  NSpace,
-  NDatePicker,
-  useMessage,
-  type FormInst,
-  DropdownOption,
-} from 'naive-ui';
-import { VNodeChild, h, ref } from 'vue';
-import { OmsIcon, OmsTableAsync, TableConfig, useAsyncTable, OmsIbtn } from '../../src/index';
-import { R01Data, createColumns, createSummary, dataSorce } from './data';
 import { isObject } from 'lodash-es';
+import { DropdownOption, NButton, NCard, NDropdown, NForm, NFormItemGi, NGrid, NGridItem, NInput, NSpace, useMessage, type FormInst } from 'naive-ui';
+import { VNodeChild, h, ref } from 'vue';
+import { OmsIbtn, OmsIcon, OmsTableAsync, TableConfig, useAsyncTable } from '../../src/index';
+import { R01Data, createColumns, createSummary, dataSorce } from './data';
 type RowData = R01Data;
 const message = useMessage();
 const formRef = ref<FormInst | null>(null);
@@ -113,7 +65,8 @@ const config: TableConfig<typeof params> = {
     return params;
   },
   watchFilter: true,
-  colsConfig: true,
+  colsConfig: false,
+  tableCtrl: 'top',
   rowKey: 'id',
 };
 

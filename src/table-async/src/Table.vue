@@ -5,11 +5,9 @@
     <span>
       <slot name="bar-left"></slot>
     </span>
-    <component v-if="buttonGrop == 'default'" :is="TableCtrl()"></component>
+    <component v-if="config.tableCtrl != 'top'" :is="TableCtrl()"></component>
   </n-flex>
   <br />
-  {{ cKeys }}
-  <div>{{ cRows }}</div>
   <n-data-table
     remote
     size="small"
@@ -26,38 +24,29 @@
     @update:checked-row-keys="handleCheck"
   />
 </template>
-<script setup lang="ts">
-import { useDialogPro, usePagination, useTableChecked, type TableConfig } from '#/index';
+<script setup lang="ts" generic="T extends object, A extends Function, Q extends object">
+import type {} from '@vue/shared'; // https://github.com/vuejs/core/issues/5960
+import { useDialogPro, usePagination, useTableChecked } from '#/index';
 import { cloneDeep, isArray, isFunction } from 'lodash-es';
-import {
-  NDataTable,
-  NFlex,
-  type DataTableColumns,
-  type DataTableCreateSummary,
-  type DataTableRowKey,
-  type DataTableSortState,
-} from 'naive-ui';
+import { NDataTable, NFlex, type DataTableColumns, type DataTableCreateSummary, type DataTableRowKey, type DataTableSortState } from 'naive-ui';
 import type { CompareFn } from 'naive-ui/es/data-table/src/interface';
 import { h, onMounted, ref, toRaw, watch } from 'vue';
 import TableBtnGroup from './TableBtnGroup.vue';
-type T = { [k: string]: any };
-type A = Function;
+import { TableConfig } from '../index';
 type TablePorps = {
   /** 请求 */
   api: A;
   /** 配置参数*/
-  config: TableConfig<T>;
+  config: TableConfig<Q>;
   /** 合计行 */
   summary?: DataTableCreateSummary<T>;
   /** 立即查询 default: true */
   query?: boolean;
   /** 表格高度 */
   maxHeight?: string | number;
-  /** 查询重置按钮组位置 需要手动添加 <component justify="end" :is="TableCtrl()"></component> */
-  buttonGrop?: 'top' | 'default';
 };
 const columns = defineModel<DataTableColumns<T>>('columns', { default: [] });
-const { api, config, query = true, buttonGrop = 'default' } = defineProps<TablePorps>();
+const { api, config, query = true } = defineProps<TablePorps>();
 const rowKey = config.rowKey;
 const collapsed = ref(false);
 const Dialog = useDialogPro();
@@ -76,7 +65,7 @@ const onReset = () => {
 
 const setKeys = (keys: DataTableRowKey[]) => {
   cKeys.value = keys;
-  cRows.value = keys.map((item) => ({ [rowKey]: item }));
+  cRows.value = keys.map((item) => ({ [rowKey]: item })) as T[];
 };
 
 const setRows = (rows: T[]) => {
@@ -143,5 +132,5 @@ onMounted(() => {
   const { watchFilter } = config;
   watchFilter && watch(() => qParams.value.filter, reload, { deep: 1 });
 });
-defineExpose({ cKeys, cRows, setKeys, setRows, cleanCheck, reload, getSource, refresh: onQuery });
+defineExpose({ cKeys, cRows, setKeys, setRows, cleanCheck, reload, getSource, refresh: onQuery, getParams: () => toRaw(qParams.value) });
 </script>
