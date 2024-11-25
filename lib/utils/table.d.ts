@@ -9,22 +9,24 @@ type PaginationOpt = {
  * @descript table分页  重置page必需使用reload, 当前页刷新使用onQuery
  * @descript 已加入自动导入
  */
-export declare const usePagination: () => {
+export declare const usePagination: ({ remote }: {
+    remote: boolean;
+}) => {
     pagination: PaginationProps;
     setPageProps: (opt: PaginationOpt) => void;
     reload: () => void;
     setQuery: (query: () => void) => () => void;
 };
 type CommonColumnInfo = {
-    fixed?: "left" | "right";
+    fixed?: 'left' | 'right';
     width?: number | string;
     minWidth?: number | string;
     maxWidth?: number | string;
     className?: string;
-    align?: "left" | "center" | "right";
-    titleAlign?: "left" | "center" | "right";
+    align?: 'left' | 'center' | 'right';
+    titleAlign?: 'left' | 'center' | 'right';
     ellipsis?: boolean | EllipsisProps;
-    ellipsisComponent?: "ellipsis" | "performant-ellipsis";
+    ellipsisComponent?: 'ellipsis' | 'performant-ellipsis';
     render?: any;
 };
 type Cols = [string, string, CommonColumnInfo?];

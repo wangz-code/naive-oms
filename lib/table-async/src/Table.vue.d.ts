@@ -14,6 +14,8 @@ declare const _default: <T extends object, A extends Function, Q extends object>
         summary?: DataTableCreateSummary<T>;
         /** 立即查询 default: true */
         query?: boolean;
+        /** 是否需要自动分页(true:远程分页, false:前端分页) */
+        remote?: boolean;
         /** 表格高度 */
         maxHeight?: string | number;
     })> & import('vue').PublicProps;
