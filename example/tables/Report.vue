@@ -1,6 +1,6 @@
 <template>
-  <n-card title="异步table">
-    <oms-table-async ref="tableRef" :columns="createColumns(action)" :summary="createSummary" :api="getR01" :max-height="450" :config="config">
+  <n-card title="报表table 常用于前端渲染大量数据, 前端合计,前端排序">
+    <oms-table-async ref="tableRef" :columns="createColumns(action)" :summary="createSummary"  :api="getR01" :remote="false"  :max-height="450" :config="config">
       <template #form="{ collapsed, reload, qParams }">
         <n-form ref="formRef" label-placement="left" label-width="auto" :model="qParams">
           <n-grid :x-gap="8" :y-gap="15" cols="2 s:3 m:4 l:5 xl:6" :collapsed="collapsed" :collapsed-rows="1" responsive="screen">
@@ -54,9 +54,6 @@
           <n-button strong secondary @click="setKeys([0, 1, 2])">设置选中Keys</n-button>
           <n-button strong secondary @click="setRows([{ id: 3 }, { id: 4 }, { id: 5 }] as R01Data[])">设置选中Rows</n-button>
           <n-button strong secondary @click="showMsg(getParams)">获取Params</n-button>
-          <n-dropdown trigger="hover" :options="actionOpts">
-            <n-button>更多...</n-button>
-          </n-dropdown>
         </n-space>
       </template>
     </oms-table-async>
@@ -64,29 +61,26 @@
 </template>
 
 <script lang="ts" setup>
-import { ArrowUndoOutline, CloseOutline, Trash } from '@vicons/ionicons5';
-import { Checks, CirclePlus, Send } from '@vicons/tabler';
+import { CirclePlus } from '@vicons/tabler';
+import { isObject } from 'lodash-es';
 import {
   NButton,
   NCard,
-  NDropdown,
+  NDatePicker,
   NForm,
   NFormItem,
-  NGridItem,
   NFormItemGi,
   NGrid,
+  NGridItem,
   NInput,
   NSelect,
   NSpace,
-  NDatePicker,
   useMessage,
-  type FormInst,
-  DropdownOption,
+  type FormInst
 } from 'naive-ui';
 import { VNodeChild, h, ref } from 'vue';
-import { OmsIcon, OmsTableAsync, TableConfig, useAsyncTable, OmsIbtn } from '../../src/index';
+import { OmsIbtn, OmsTableAsync, TableConfig, useAsyncTable } from '../../src/index';
 import { R01Data, createColumns, createSummary, dataSorce } from './data';
-import { isObject } from 'lodash-es';
 type RowData = R01Data;
 const message = useMessage();
 const formRef = ref<FormInst | null>(null);
@@ -134,35 +128,6 @@ const action = (): VNodeChild =>
     },
     () => '操作',
   );
-
-const renderIcon = (icon) => h(OmsIcon, { component: icon });
-const actionOpts: DropdownOption[] = [
-  {
-    label: '批量发起',
-    key: 'submit',
-    icon: () => renderIcon(Send),
-  },
-  {
-    label: '批量审核',
-    key: 'audit',
-    icon: () => renderIcon(Checks),
-  },
-  {
-    label: '批量驳回',
-    key: 'reject',
-    icon: () => renderIcon(ArrowUndoOutline),
-  },
-  {
-    label: '批量反审',
-    key: 'reAudit',
-    icon: () => renderIcon(CloseOutline),
-  },
-  {
-    label: '批量删除',
-    key: 'delete',
-    icon: () => renderIcon(Trash),
-  },
-];
 
 const generalOptions = [
   ['0', '全部收款'],

@@ -1,7 +1,7 @@
 import type { DataTableRowKey } from 'naive-ui';
 import { ref, toRaw } from 'vue';
 
-export { default as OmsTableAsync } from './src/Table.vue';
+export { default as OmsTableAsync } from './src/Table.vue'; // 异步列表涉及到 后台分页,后端合计等
 
 export type TableConfig<T = { [k: string]: any }> = {
   /** 请求参数处理 */

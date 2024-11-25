@@ -14,7 +14,7 @@ import {
   zhCN,
 } from 'naive-ui';
 import * as Modals from './modal';
-import * as Tabls from './table';
+import * as Tabls from './tables';
 import { computed, ref } from 'vue';
 const Comps = { ...Tabls, ...Modals };
 const lang = ref(true);

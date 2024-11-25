@@ -9,8 +9,8 @@
   </n-flex>
   <br />
   <n-data-table
-    remote
     size="small"
+    :remote="remote"
     :columns="columns"
     :data="tableSorce"
     :pagination="pagination"
@@ -42,17 +42,19 @@ type TablePorps = {
   summary?: DataTableCreateSummary<T>;
   /** 立即查询 default: true */
   query?: boolean;
+  /** 是否需要自动分页(true:远程分页, false:前端分页) */
+  remote?: boolean;
   /** 表格高度 */
   maxHeight?: string | number;
 };
 const columns = defineModel<DataTableColumns<T>>('columns', { default: [] });
-const { api, config, query = true } = defineProps<TablePorps>();
+const { api, config, query = true, remote = false } = defineProps<TablePorps>();
 const rowKey = config.rowKey;
 const collapsed = ref(false);
 const Dialog = useDialogPro();
 const scrollX = columns.value.reduce((pre, curr) => pre + Number(curr.width) || 0, 0);
 
-const { pagination, setPageProps, reload, setQuery } = usePagination();
+const { pagination, setPageProps, reload, setQuery } = usePagination({ remote });
 const { cKeys, cRows, handleCheck, cleanCheck } = useTableChecked<T>(rowKey);
 const tableSorce = ref<T[]>([]);
 const isLoading = ref(false);
@@ -134,3 +136,12 @@ onMounted(() => {
 });
 defineExpose({ cKeys, cRows, setKeys, setRows, cleanCheck, reload, getSource, refresh: onQuery, getParams: () => toRaw(qParams.value) });
 </script>
+
+<style>
+/* 覆盖默认的样式, 合计行固定在底部 */
+.n-data-table .n-data-table-tr--summary {
+  position: sticky;
+  bottom: 0px;
+  z-index: 2;
+}
+</style>
