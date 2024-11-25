@@ -1,13 +1,11 @@
 <template>
   <slot name="form" v-bind="{ collapsed, reload, qParams, TableCtrl }"> </slot>
-  <br />
-  <n-flex justify="space-between">
+  <n-flex justify="space-between" style="margin: 10px 0px;">
     <span>
       <slot name="bar-left"></slot>
     </span>
     <component v-if="config.tableCtrl != 'top'" :is="TableCtrl()"></component>
   </n-flex>
-  <br />
   <n-data-table
     size="small"
     :remote="remote"
