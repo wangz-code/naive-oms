@@ -86,7 +86,7 @@ const onQuery = setQuery(async () => {
     if (config.paramsHandler) params = { ...params, ...config.paramsHandler(toRaw(qParams.value)) };
     const { data, status, message } = await api(params);
     if (status != 'success') {
-      Dialog.error(message);
+      Dialog.errorApi(message);
       return;
     }
     copiedData = cloneDeep(data.list);
@@ -127,8 +127,8 @@ const TableCtrl = () => {
   });
 };
 
-query && onQuery();
-onMounted(() => {
+onMounted(() => { 
+  query && onQuery();
   const { watchFilter } = config;
   watchFilter && watch(() => qParams.value.filter, reload, { deep: 1 });
 });

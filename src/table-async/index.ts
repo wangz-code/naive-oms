@@ -42,7 +42,7 @@ export type TableAsyRef<Row, Q = { [k: string]: any }> = {
 };
 
 export const useAsyncTable = <T, Q = any>() => {
-  const tableRef = ref<TableAsyRef<T, Q>>();
+  const tableRef = ref<TableAsyRef<T, Q>>(null);
   const getRef = () => {
     if (!tableRef.value) {
       console.error('table Instance is not found, are you bind ref, 数需要在 onMounted后调用');
