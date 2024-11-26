@@ -1,5 +1,5 @@
-import { CheckmarkCircleSharp, CloseCircleOutline } from '@vicons/ionicons5';
-import { Trash } from '@vicons/tabler';
+import { ArrowUndoOutline, CheckmarkCircleSharp, CloseCircleOutline } from '@vicons/ionicons5';
+import { Send, Trash } from '@vicons/tabler';
 
 export { default as OmsIbtn } from './src/IconButton.vue';
 
@@ -12,6 +12,18 @@ export const btnAttr = {
     strong: true,
     tertiary: true,
     icon: Trash,
+  },
+  launch: {
+    type: 'default',
+    strong: true,
+    tertiary: true,
+    icon: Send,
+  },
+  reject: {
+    type: 'error',
+    strong: true,
+    tertiary: true,
+    icon: ArrowUndoOutline,
   },
   agree: {
     type: 'success',

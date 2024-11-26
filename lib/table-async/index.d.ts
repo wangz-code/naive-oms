@@ -43,10 +43,34 @@ export type TableAsyRef<Row, Q = {
     getParams: () => Q;
 };
 export declare const useAsyncTable: <T, Q = any>() => {
-    tableRef: import('vue').Ref<TableAsyRef<T, Q>, TableAsyRef<T, Q>>;
+    tableRef: import('vue').Ref<{
+        cKeys: DataTableRowKey[];
+        cRows: import('@vue/reactivity').UnwrapRefSimple<T>[];
+        setKeys: (p: DataTableRowKey[]) => void;
+        setRows: (p: T[]) => void;
+        getKeys: () => DataTableRowKey[];
+        getRows: () => T[];
+        getSource: () => T[];
+        cleanCheck: () => void;
+        reload: () => void;
+        refresh: () => void;
+        getParams: () => Q;
+    }, TableAsyRef<T, Q> | {
+        cKeys: DataTableRowKey[];
+        cRows: import('@vue/reactivity').UnwrapRefSimple<T>[];
+        setKeys: (p: DataTableRowKey[]) => void;
+        setRows: (p: T[]) => void;
+        getKeys: () => DataTableRowKey[];
+        getRows: () => T[];
+        getSource: () => T[];
+        cleanCheck: () => void;
+        reload: () => void;
+        refresh: () => void;
+        getParams: () => Q;
+    }>;
     reload: () => void;
     getKeys: () => DataTableRowKey[];
-    getRows: () => T[];
+    getRows: () => import('@vue/reactivity').UnwrapRefSimple<T>[];
     setKeys: (keys: DataTableRowKey[]) => void;
     setRows: (rows: T[]) => void;
     cleanCheck: () => void;
