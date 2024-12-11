@@ -6,7 +6,7 @@ export type QueryParams = {
         remove: Function;
         add: Function;
     };
-    deep: "2" | "3";
+    deep: '2' | '3';
     params: {
         [x: string]: any;
     };
