@@ -1,6 +1,6 @@
 import { DataTableRowKey, ModalReactive } from 'naive-ui';
 import { CSSProperties, Component, Ref } from 'vue';
-export type ModalOpts<T = any> = {
+export type ChooseOpts<T = any> = {
     title?: string;
     keys?: any[];
     query?: {};
@@ -19,7 +19,7 @@ export type XModalOptions = {
 };
 export type ChooseModalProps = {
     modalApi: ModalReactive;
-    options: ModalOpts;
+    options: ChooseOpts;
     multiple?: boolean;
 };
 export type OtherModalProps<T extends any> = {
@@ -31,9 +31,10 @@ export type OtherModalProps<T extends any> = {
  * @param xModalOpt
  * @descript 使用方式参见选择账户 /M80/M8003/index
  * @descript 已加入自动导入
+ * T 为自定义类型, 默认是 ModalOpts
  */
-export declare const useXModal: <T>(xModalOpt: XModalOptions) => {
-    open: (options?: ModalOpts<T>) => void;
+export declare const useXModal: <P = any, T = ChooseOpts<P>>(xModalOpt: XModalOptions) => {
+    open: (opt: T) => void;
     close: () => void;
 };
 /**
