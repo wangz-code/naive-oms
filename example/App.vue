@@ -5,6 +5,7 @@ import {
   NConfigProvider,
   NDialogProvider,
   NMessageProvider,
+  NModalProvider,
   NNotificationProvider,
   NTabPane,
   NTabs,
@@ -28,16 +29,18 @@ const config = ref({
     <n-dialog-provider>
       <n-notification-provider>
         <n-message-provider>
-          <n-card title="示例" size="small">
-            <template #header-extra>
-              <n-button @click="lang = !lang">中文/English</n-button>
-            </template>
-            <n-tabs type="line" animated>
-              <n-tab-pane v-for="(item, idx) in Comps" :name="idx" :tab="idx">
-                <component :is="item"></component>
-              </n-tab-pane>
-            </n-tabs>
-          </n-card>
+          <n-modal-provider>
+            <n-card title="示例" size="small">
+              <template #header-extra>
+                <n-button @click="lang = !lang">中文/English</n-button>
+              </template>
+              <n-tabs type="line" animated>
+                <n-tab-pane v-for="(item, idx) in Comps" :name="idx" :tab="idx">
+                  <component :is="item"></component>
+                </n-tab-pane>
+              </n-tabs>
+            </n-card>
+          </n-modal-provider>
         </n-message-provider>
       </n-notification-provider>
     </n-dialog-provider>
