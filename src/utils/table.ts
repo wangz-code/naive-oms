@@ -30,20 +30,20 @@ export const usePagination = ({ remote }: { remote: boolean }) => {
     prefix: ({ itemCount }) => `${itemCount}${localeRef.value.total}`,
   });
 
-  const query = ()=>{
-	remote && options.onQuery && options.onQuery();
-  }
+  const query = () => {
+    remote && options.onQuery && options.onQuery();
+  };
   const setPageProps = (opt: PaginationOpt) => {
     pagination.itemCount = Number(opt.itemCount);
     pagination.onUpdatePage = (page: number) => {
       pagination.page = page;
-      query()
+      query();
     };
 
     pagination.onUpdatePageSize = (pageSize: number) => {
       pagination.pageSize = pageSize;
       pagination.page = 1;
-      query()
+      query();
     };
     if (opt.props) extend(pagination, opt.props);
     extend(options, opt);

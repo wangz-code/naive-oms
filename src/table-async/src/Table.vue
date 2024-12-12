@@ -1,6 +1,6 @@
 <template>
   <slot name="form" v-bind="{ collapsed, reload, qParams, TableCtrl }"> </slot>
-  <n-flex justify="space-between" style="margin: 10px 0px;">
+  <n-flex justify="space-between" style="margin: 10px 0px">
     <span>
       <slot name="bar-left"></slot>
     </span>
@@ -127,7 +127,7 @@ const TableCtrl = () => {
   });
 };
 
-onMounted(() => { 
+onMounted(() => {
   query && onQuery();
   const { watchFilter } = config;
   watchFilter && watch(() => qParams.value.filter, reload, { deep: 1 });
