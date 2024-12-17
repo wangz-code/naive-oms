@@ -6,3 +6,4 @@ export * from './tips';
 export * from './array';
 export * from './cryptojs';
 export * from './constants';
+export * from './icon';
