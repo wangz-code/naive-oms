@@ -50,4 +50,6 @@ export declare function paramsHandler(params: {
 }, cleanFilter?: any[]): {
     [k: string]: any;
 };
+/** 使用分隔符拼接两个字符串, 列表多行tittle */
+export declare function strJoin(arr: string[], separator?: string): string;
 export {};

@@ -93,3 +93,8 @@ export function paramsHandler(params: { [k: string]: any }, cleanFilter = [null]
   if (params.filter) res.filter = JSON.stringify(params.filter, (_, value) => (cleanFilter.includes(value) ? undefined : value));
   return res;
 }
+
+/** 使用分隔符拼接两个字符串, 列表多行tittle */
+export function strJoin(arr:string[], separator = ' / ') {
+  return arr.join(separator)
+}
