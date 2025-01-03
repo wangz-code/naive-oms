@@ -22,3 +22,10 @@ export interface ValidateError {
     fieldValue?: any;
     field?: string;
 }
+/**
+ *
+ * @param value any
+ * @returns boolean
+ * @description  isString(value) && value.trim().length > 0;
+ */
+export declare const isTrimString: (value: any) => boolean;

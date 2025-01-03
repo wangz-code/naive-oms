@@ -1,11 +1,12 @@
 /*
  * @Author: wangqz
  * @Date: 2024-09-09
- * @LastEditTime: 2024-11-14
+ * @LastEditTime: 2025-01-03
  * @Description: 表单相关
  */
 
 import useLocale from '#/_mixins/use-locale';
+import { isString } from 'lodash-es';
 import type { FormRules } from 'naive-ui';
 // 效验时机
 export const trigger = ['input', 'change', 'blur'];
@@ -41,3 +42,11 @@ export interface ValidateError {
   fieldValue?: any;
   field?: string;
 }
+
+/**
+ *
+ * @param value any
+ * @returns boolean
+ * @description  isString(value) && value.trim().length > 0;
+ */
+export const isTrimString = (value) => isString(value) && value.trim().length > 0;
