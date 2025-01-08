@@ -7,7 +7,7 @@ export type ListQuery<T extends any> = {
   offset?: number;
   limit?: number;
   fuzzy?: string;
-  filter: T;
+  filter?: T;
 };
 
 export type ListRes<T extends any> = {
