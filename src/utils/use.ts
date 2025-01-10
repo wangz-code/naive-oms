@@ -128,7 +128,16 @@ export const useResetForm = <T>() => {
     if (isClean) form.value = cloneDeep(cloneData);
     isClean = false;
   };
-  /** @description 下一次调用checkRestForm则会重置form,  */
+  /**
+   * @description 下一次调用checkRestForm则会重置form,
+   */
   const nextRestForm = () => (isClean = true);
-  return { refForm, nextRestForm, checkRestForm };
+
+  /**
+   * @description 设置form的值
+   */
+  const setForm = (value: T) => {
+    form.value = value;
+  };
+  return { refForm, nextRestForm, checkRestForm, setForm };
 };

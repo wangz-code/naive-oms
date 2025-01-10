@@ -67,4 +67,5 @@ export declare const useResetForm: <T>() => {
     refForm: (value: T) => Ref<T>;
     nextRestForm: () => boolean;
     checkRestForm: () => void;
+    setForm: (value: T) => void;
 };

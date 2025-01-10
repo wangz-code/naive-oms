@@ -79,7 +79,7 @@ type CommonColumnInfo = {
   ellipsisComponent?: 'ellipsis' | 'performant-ellipsis';
   render?: any;
 };
-type Cols = [string, string, CommonColumnInfo?];
+export type Cols = [string, string, CommonColumnInfo?];
 
 // 生成table col
 export function tableGen(data: Cols[]) {

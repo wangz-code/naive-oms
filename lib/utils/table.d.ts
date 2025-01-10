@@ -29,7 +29,7 @@ type CommonColumnInfo = {
     ellipsisComponent?: 'ellipsis' | 'performant-ellipsis';
     render?: any;
 };
-type Cols = [string, string, CommonColumnInfo?];
+export type Cols = [string, string, CommonColumnInfo?];
 export declare function tableGen(data: Cols[]): {
     fixed?: "left" | "right";
     width?: number | string;
