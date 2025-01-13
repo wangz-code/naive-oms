@@ -12,7 +12,7 @@
 </template>
 <script setup>
 import { NScrollbar } from 'naive-ui';
-import { useSlots } from 'vue';
+import { useSlots, computed } from 'vue';
 const slots = useSlots();
 const slotFooter = computed(() => !!slots.footer);
 </script>
