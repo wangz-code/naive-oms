@@ -1,6 +1,6 @@
 <template>
   <div class="relative" id="drawer-target">
-    <n-scrollbar style="max-height: calc(100vh - 88px)">
+    <n-scrollbar style="height: calc(100vh - 88px)">
       <div style="margin: 0.5rem">
         <slot></slot>
         <div v-show="slotFooter" class="footer" style="position: sticky; bottom: 10px">
