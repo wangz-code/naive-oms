@@ -10,7 +10,7 @@ import { useXModal } from '../../src';
 import ImportExcel from './ImportExcel.vue';
 import { ExcelOpts } from '.';
 
-const excelModal = useXModal<null, ExcelOpts>({ title: '标题', width: '600px', content: ImportExcel });
+const excelModal = useXModal<null, ExcelOpts>({ title: '标题', width: '600px', maskClosable: false, content: ImportExcel });
 const showImportExcel = () => {
   excelModal.open({
     query: {

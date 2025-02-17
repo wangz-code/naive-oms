@@ -30,10 +30,10 @@ export declare const useTableColStore: {
     state: TableState;
     /** 每个用户使用不同的缓存id */
     getID(uid: string): string;
-    /** 1.初始化列配置 */
-    initTableCols(uid: string, columns: Columns): Config;
     /** 配置列配置 */
     setColsConfig(uid: string, config: Config, field?: string): void;
+    /** 1.初始化列配置 */
+    initTableCols(uid: string, columns: Columns): Config;
     /** 重置 */
     resetTableCols(uid: string): void;
     /** 清理 */

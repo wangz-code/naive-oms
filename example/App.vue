@@ -16,8 +16,9 @@ import {
 } from 'naive-ui';
 import * as Modals from './modal';
 import * as Tabls from './tables';
+import * as Forms from './form';
 import { computed, ref } from 'vue';
-const Comps = { ...Tabls, ...Modals };
+const Comps = { ...Tabls, ...Modals, ...Forms };
 const lang = ref(true);
 const config = ref({
   locale: computed(() => (lang.value ? zhCN : enUS)),

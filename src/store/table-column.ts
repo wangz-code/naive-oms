@@ -56,6 +56,15 @@ export const useTableColStore = {
   getID(uid: string) {
     return uid;
   },
+  /** 配置列配置 */
+  setColsConfig(uid: string, config: Config, field?: string) {
+    const { state, getID } = useTableColStore;
+    const id = getID(uid);
+    state.tables[id]!.config = config;
+    if (field) state.tables[id]!.field = field;
+    const cash = JSON.stringify(state);
+    localStorage.setItem(LocalKey, cash);
+  },
   /** 1.初始化列配置 */
   initTableCols(uid: string, columns: Columns) {
     const { state, setColsConfig } = useTableColStore;
@@ -90,15 +99,7 @@ export const useTableColStore = {
     state.tables[id] = { config: setCols(columns, []), field };
     return state.tables[id]!.config;
   },
-  /** 配置列配置 */
-  setColsConfig(uid: string, config: Config, field?: string) {
-    const { state, getID } = useTableColStore;
-    const id = getID(uid);
-    state.tables[id]!.config = config;
-    if (field) state.tables[id]!.field = field;
-    const cash = JSON.stringify(state);
-    localStorage.setItem(LocalKey, cash);
-  },
+
   /** 重置 */
   resetTableCols(uid: string) {
     delete useTableColStore.state.tables[uid];
