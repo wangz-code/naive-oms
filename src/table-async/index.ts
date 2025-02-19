@@ -8,6 +8,8 @@ export type TableConfig<T = { [k: string]: any }> = {
   paramsHandler?: (p: T) => { [k: string]: any };
   /** 监听filter变化,重新查询 */
   watchFilter?: boolean;
+  /** 加载完成后立即查询 */
+  immediately?:boolean
   /** 列配置 */
   colsConfig?: boolean;
   /** 请求参数 */

@@ -46,7 +46,7 @@ type TablePorps = {
   maxHeight?: string | number;
 };
 const columns = defineModel<DataTableColumns<T>>('columns', { default: [] });
-const { api, config, query = true, remote = false } = defineProps<TablePorps>();
+const { api, config, remote = false } = defineProps<TablePorps>();
 const rowKey = config.rowKey;
 const collapsed = ref(false);
 const Dialog = useDialogPro();
@@ -128,8 +128,8 @@ const TableCtrl = () => {
 };
 
 onMounted(() => {
-  query && onQuery();
-  const { watchFilter } = config;
+  const { watchFilter, immediately } = config;
+  immediately && onQuery();
   watchFilter && watch(() => qParams.value.filter, reload, { deep: 1 });
 });
 defineExpose({ cKeys, cRows, setKeys, setRows, cleanCheck, reload, getSource, refresh: onQuery, getParams: () => toRaw(qParams.value) });
